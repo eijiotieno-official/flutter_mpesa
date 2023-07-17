@@ -1,3 +1,4 @@
-library flutter_mpesa;
-export 'package:flutter_mpesa/flutter_mpesa_services.dart';
-export 'package:flutter_mpesa/enums.dart';
+library flutter_mpesa_package;
+
+export 'package:flutter_mpesa_package/enums.dart';
+export 'package:flutter_mpesa_package/flutter_mpesa.dart';

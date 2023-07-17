@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mpesa/flutter_mpesa.dart';
+import 'package:flutter_mpesa_package/enums.dart';
+import 'package:flutter_mpesa_package/flutter_mpesa_services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 void main() {
   FlutterMpesa.passConsumerCredentials(
-    consumerKey: "wm5LeyPtLy7l4khuTJscmcc5lCY7B151",
-    consumerSecret: "o2pz0uz1lBAbIPaJ",
-    securityCredential:
-        "OLzBoMHBaJamuRm7mt5zvFcpVqWWZzx7sSCXq4baSwjM19Fc7R70+i8NWHvEGXPCoSSXuSM7O6xoWpdHrSkgbqClUq+ESdWuuHx3gD409fcA3S/3XD+l4hCHLhSobDNrj5zLdO3OKACIr8ZrAJeiTIFSwsoq3baq26I3WO12TrviR/X4H+AIdAN7cbz4oFkJ1C/bGcwg5OlPqiP+cozRKDWEMTFALkCoiPWxd+C8s6bXNvZn1+GxIwGjCRWEVrJPuuRccicCY4wOL/BSX7Ao5b3/owEdF0gybVa+lEkMXYJEIfMOCOVEr5UH58Cliw0SbZ6D+/DzqxSOT4A9EeerwQ==",
+    consumerKey: "[]",
+    consumerSecret: "[]",
+    securityCredential: "[]",
   );
   runApp(const MyApp());
 }

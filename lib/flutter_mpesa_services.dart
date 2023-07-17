@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_mpesa/flutter_mpesa.dart';
+import 'package:flutter_mpesa_package/enums.dart';
 import 'package:http/http.dart' as http;
 
 class FlutterMpesa {
