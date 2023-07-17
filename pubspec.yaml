@@ -1,6 +1,6 @@
 name: flutter_mpesa_package
 description: Simplified methods to handle M-PESA DARAJA API.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/eijiotieno-official/flutter_mpesa
 
 environment:

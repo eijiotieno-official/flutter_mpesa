@@ -23,7 +23,7 @@ A Flutter package that provides easy integration with the M-Pesa Daraja API for 
 ## Installation
 
 ```sh
-dart pub add flutter_mpesa
+dart pub add flutter_mpesa_package
 ```
 
 ## Requirements
