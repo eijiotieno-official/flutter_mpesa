@@ -1,8 +1,6 @@
 # Flutter Mpesa
 
-[![Pub Version](https://img.shields.io/pub/v/your_package_name.svg)](https://pub.dev/packages/flutter_mpesa)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/eijiotieno-official/flutter_mpesa/blob/main/LICENSE)
-![Publisher](https://img.shields.io/badge/publisher-YourPublisher-blueviolet.svg)
 
 A Flutter package that provides easy integration with the M-Pesa Daraja API for handling money transactions.
 
