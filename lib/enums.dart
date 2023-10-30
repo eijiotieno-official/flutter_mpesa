@@ -1,3 +1,9 @@
+enum Environment {
+  sandbox,
+  production,
+}
+
+
 enum TransactionStatusIdentifierType {
   msisdn,
   tillNumber,

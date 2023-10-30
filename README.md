@@ -45,15 +45,16 @@ the [AndroidManifest.xml](android/src/main/AndroidManifest.xml) file.
 
 ### initialization
 
-Initialize the M-Pesa Daraja API with your credentials:
-
+Initialize the M-Pesa Daraja API with your credentials and environment :
+The default environment is set to `sandbox` if the `environment` parameter is not explicitly provided.
 ```dart
 void main() {
 
-FlutterMpesa.passConsumerCredentials(
+FlutterMpesa.mPesaConfig(
     consumerKey: "[CUSTOMER KEY IN M-PESA DARAJA]",
     consumerSecret: "[CUSTOMER SECRET IN M-PESA DARAJA]",
     securityCredential: "[SECURITY CREDENTIAL IN M-PESA DARAJA]",
+    environment: MpesaEnvironment.sandbox,
   );
 
   runApp(const MyApp());
@@ -62,7 +63,7 @@ FlutterMpesa.passConsumerCredentials(
 
 ### Access Token
 
-Generate access token using this method, make sure you have correctly specified and initialized customerKey, consumerSecret and securityCredential provided by [<span style="color: GREEN">**M-pesa Daraja API**</span>](https://developer.safaricom.co.ke/) otherwise an exception will be thrown.
+Generate access token using this method, make sure you have correctly specified and initialized customerKey, consumerSecret, securityCredential and environment provided by [<span style="color: GREEN">**M-pesa Daraja API**</span>](https://developer.safaricom.co.ke/) otherwise an exception will be thrown.
 
 **NOTE : YOU DON'T HAVE TO CALL THIS METHOD EVERY TIME YOU USE OTHER METHODS, I ALREADY DID THAT FOR INDIVIDUAL METHODS.**
 

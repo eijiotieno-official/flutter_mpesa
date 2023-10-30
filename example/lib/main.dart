@@ -4,10 +4,12 @@ import 'package:flutter_mpesa_package/flutter_mpesa_services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 void main() {
-  FlutterMpesa.passConsumerCredentials(
+  FlutterMpesa.mPesaConfig(
     consumerKey: "[]",
     consumerSecret: "[]",
     securityCredential: "[]",
+    environment: Environment.sandbox,
+
   );
   runApp(const MyApp());
 }
@@ -178,7 +180,7 @@ class _HomeState extends State<Home> {
                     TaxRemittanceSenderIdentifierType.tillNumber,
               ).then((value) => print(value));
             },
-            child: const Text("REVERSE TRANSACTION"),
+            child: const Text("TAX REMITTANCE"),
           ),
         ],
       ),

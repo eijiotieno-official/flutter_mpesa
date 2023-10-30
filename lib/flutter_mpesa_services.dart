@@ -3,24 +3,50 @@ import 'package:flutter_mpesa_package/enums.dart';
 import 'package:http/http.dart' as http;
 
 class FlutterMpesa {
-  //These lines declare three static variables: _consumerKey, _consumerSecret, and _securityCredential. The static keyword means that these variables belong to the class itself rather than an instance of the class. They are also nullable (String?), meaning they can hold either a string value or null.
+
+
 
   static String? _consumerKey;
   static String? _consumerSecret;
   static String? _securityCredential;
+  static String _baseUrl = _sandboxBaseUrl;
+  static const String _sandboxBaseUrl = 'https://sandbox.safaricom.co.ke';
+  static const String _liveBaseUrl = 'https://api.safaricom.co.ke';
 
-  // This is a static method named passConsumerCredentials that takes three required arguments: consumerKey, consumerSecret, and securityCredential. It doesn't return anything (void).
+  // Configures the flutter_mpesa_package package by setting the consumer credentials and environment for M-Pesa integration.
+  // This method allows the setting of consumer credentials and defines the environment for interacting with the M-Pesa Daraja API.
+  // The environment parameter, if provided, allows the selection of either a 'sandbox' or 'production' environment for the integration.
+  // If the environment parameter is not specified, the 'sandbox' environment is set by default.
+  // The URL base is adjusted accordingly based on the selected environment:
+  //   - For 'sandbox', the base URL is set to 'https://sandbox.safaricom.co.ke'.
+  //   - For 'production', the base URL is set to 'https://api.safaricom.co.ke'.
 
-  static void passConsumerCredentials({
+
+  /// @param consumerKey The consumer key required for accessing the M-Pesa Daraja API.
+  /// @param consumerSecret The consumer secret required for accessing the M-Pesa Daraja API.
+  /// @param securityCredential The security credential required for accessing the M-Pesa Daraja API.
+  /// @param environment An enum parameter to specify the environment (sandbox or production) for the M-Pesa integration.
+
+  static void mPesaConfig({
     required String consumerKey,
     required String consumerSecret,
     required String securityCredential,
+    Environment? environment,
   }) {
-    // The purpose of this method is to set the consumer credentials for accessing the M-Pesa Daraja API. The values for consumerKey, consumerSecret, and securityCredential are provided as arguments to the method.
 
     _consumerKey = consumerKey;
     _consumerSecret = consumerSecret;
     _securityCredential = securityCredential;
+    switch (environment) {
+      case Environment.sandbox:
+        _baseUrl= _sandboxBaseUrl;
+        break;
+      case Environment.production:
+        _baseUrl = _liveBaseUrl;
+        break;
+      default:
+        _baseUrl = _sandboxBaseUrl;
+    }
   }
 
   /// Retrieves an access token from the M-Pesa Daraja API for authentication.
@@ -52,7 +78,7 @@ You can use this function to obtain an access token required for subsequent requ
 
     // Set the URL to request the access token
     String tokenUrl =
-        'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        '$_baseUrl/oauth/v1/generate?grant_type=client_credentials';
 
     // Send a GET request to the token URL with the headers
     final response = await http.get(Uri.parse(tokenUrl), headers: headers);
@@ -101,7 +127,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL to generate the QR code
           String qrUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/qrcode/v1/generate';
+              '$_baseUrl/mpesa/qrcode/v1/generate';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -164,7 +190,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for initiating the Lipa na M-Pesa transaction
           String lipaNaMpesaUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+              '$_baseUrl/mpesa/stkpush/v1/processrequest';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -230,7 +256,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for registering the C2B URL
           String c2bRegisterUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
+              '$_baseUrl/mpesa/c2b/v1/registerurl';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -296,7 +322,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for initiating the B2C transaction
           String businessToCustomerUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest';
+              '$_baseUrl/mpesa/b2c/v1/paymentrequest';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -368,7 +394,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for querying the transaction status
           String transactionQueryUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query';
+              '$_baseUrl/mpesa/transactionstatus/v1/query';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -437,7 +463,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for querying the account balance
           String accountBalanceQueryUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
+              '$_baseUrl/mpesa/accountbalance/v1/query';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -507,7 +533,7 @@ Finally, it returns the responseData if available.*/
         if (accessToken != null) {
           // Set the URL for initiating the transaction reversal
           String reversalQueryUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
+              '$_baseUrl/mpesa/reversal/v1/request';
 
           // Prepare the request body with the specified parameters
           Map<String, dynamic> requestBody = {
@@ -576,7 +602,7 @@ Finally, it returns the responseData if available.*/
       (accessToken) async {
         if (accessToken != null) {
           String remittaxUrl =
-              'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/remittax';
+              '$_baseUrl/mpesa/b2b/v1/remittax';
 
           Map<String, dynamic> requestBody = {
             "Initiator": initiator,
