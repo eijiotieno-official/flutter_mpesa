@@ -1,44 +1,44 @@
 enum TransactionStatusIdentifierType {
-  msisdn,
-  tillNumber,
-  organizationShortCode,
+  msisdn, // Mobile Number
+  tillNumber, // Till Number
+  organizationShortCode, // Organization Short Code
 }
 
 enum AccountBalanceIdentifierType {
-  msisdn,
-  tillNumber,
-  organizationShortCode,
+  msisdn, // Mobile Number
+  tillNumber, // Till Number
+  organizationShortCode, // Organization Short Code
 }
 
 enum TaxRemittanceSenderIdentifierType {
-  msisdn,
-  tillNumber,
-  organizationShortCode,
+  msisdn, // Mobile Number
+  tillNumber, // Till Number
+  organizationShortCode, // Organization Short Code
 }
 
 enum TaxRemittanceReceiverIdentifierType {
-  msisdn,
-  tillNumber,
-  organizationShortCode,
+  msisdn, // Mobile Number
+  tillNumber, // Till Number
+  organizationShortCode, // Organization Short Code
 }
 
 enum QRTransactionType {
-  //Pay Merchant (Buy Goods)
+  // Pay Merchant (Buy Goods)
   bg,
-  //Withdraw Cash at Agent Till
+  // Withdraw Cash at Agent Till
   wa,
-  //Paybill or Business number
+  // Paybill or Business number
   pb,
-  //Send Money(Mobile number)
+  // Send Money(Mobile number)
   sm,
-  //Sent to Business. Business number CPI in MSISDN format
+  // Sent to Business. Business number CPI in MSISDN format
   sb,
 }
 
 enum ReversalReceiverIdentifierType {
-  msisdn,
-  tillNumber,
-  organizationShortCode,
+  msisdn, // Mobile Number
+  tillNumber, // Till Number
+  organizationShortCode, // Organization Short Code
 }
 
 enum C2BRegisterUrlResponseType {

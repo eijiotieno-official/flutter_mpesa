@@ -4,10 +4,10 @@ import 'package:flutter_mpesa_package/flutter_mpesa_services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 void main() {
-  FlutterMpesa.passConsumerCredentials(
-    consumerKey: "[]",
-    consumerSecret: "[]",
-    securityCredential: "[]",
+  FlutterMpesa.initFlutterMpesa(
+    consumerKey: "",
+    consumerSecret: "",
+    securityCredential: "",
   );
   runApp(const MyApp());
 }
@@ -46,25 +46,25 @@ class _HomeState extends State<Home> {
             ),
           ElevatedButton(
             onPressed: () {
-              FlutterMpesa.accessToken().then((value) {
-                print(value);
-              });
+              FlutterMpesa.accessToken(isLive: false)
+                  .then((value) => debugPrint(value));
             },
             child: const Text("ACCESS TOKEN"),
           ),
           ElevatedButton(
             onPressed: () {
-              FlutterMpesa.generateQR(
+              FlutterMpesa.generateQRCode(
                 merchantName: "EIJI",
                 amount: 1,
                 referenceNumber: "referenceNumber",
                 creditPartyIdentifier: "23rw455",
                 qrTransactionType: QRTransactionType.bg,
                 size: 300,
+                isLive: false,
               ).then((value) {
-                print(value);
+                debugPrint(value);
                 setState(() {
-                  qrText = value['qrcode'];
+                  qrText = value;
                 });
               });
             },
@@ -74,14 +74,14 @@ class _HomeState extends State<Home> {
             onPressed: () {
               FlutterMpesa.lipaNaMpesa(
                 businessShortCode: 174379,
-                phoneNumber: 254706733999,
+                phoneNumber: 254000000000,
                 amount: 1,
                 callBackUrl: "https://mydomain.com/path",
-                passKey: "[YOUR PASS KEY]",
+                passKey: "YOUR PASS KEY",
                 accountReference: "EIJI",
                 transactionDescription: "transactionDescription",
-                // accountNumber: '24356',
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("MPESA EXPRESS (LIPA NA MPESA)"),
           ),
@@ -93,7 +93,8 @@ class _HomeState extends State<Home> {
                     C2BRegisterUrlResponseType.completed,
                 confirmationUrl: "https://mydomain.com/confirmation",
                 validationUrl: "https://mydomain.com/validation",
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("CUSTOMER TO BUSINESS REGISTER URL"),
           ),
@@ -101,15 +102,16 @@ class _HomeState extends State<Home> {
             onPressed: () {
               FlutterMpesa.businessToCustomer(
                 businessShortCode: 600988,
-                recipientPhoneNumber: 254706733999,
+                recipientPhoneNumber: 254000000000,
                 amount: 1,
                 b2cPaymentType: B2CPaymentType.salaryPayment,
                 initiatorName: "initiatorName",
                 queueTimeOutUrl: "https://mydomain.com/b2c/queue",
                 resultUrl: "https://mydomain.com/b2c/result",
                 remarks: "remarks",
-                occassion: "occassion",
-              ).then((value) => print(value));
+                occasion: "occasion",
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("BUSINESS TO CUSTOMER"),
           ),
@@ -118,15 +120,16 @@ class _HomeState extends State<Home> {
               FlutterMpesa.transactionStatus(
                 initiator: "HELLO",
                 transactionId: "OEI2AK4Q16",
-                partyA: 254706733999,
+                partyA: 254000000000,
                 transactionStatusIdentifierType:
                     TransactionStatusIdentifierType.organizationShortCode,
                 queueTimeOutUrl:
                     'https://mydomain.com/TransactionStatus/queue/',
                 resultUrl: 'https://mydomain.com/TransactionStatus/result/',
-                occassion: 'occassion',
+                occasion: 'occasion',
                 remarks: 'OK',
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("TRANSACTION STATUS"),
           ),
@@ -140,7 +143,8 @@ class _HomeState extends State<Home> {
                 resultUrl: "https://mydomain.com/AccountBalance/result/",
                 queueTimeOutUrl: "https://mydomain.com/AccountBalance/queue/",
                 remarks: "remarks",
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("RETRIEVE ACCOUNT BALANCE"),
           ),
@@ -154,10 +158,11 @@ class _HomeState extends State<Home> {
                 resultUrl: "https://mydomain.com/Reversal/queue/",
                 queueTimeOutUrl: "https://mydomain.com/Reversal/result/",
                 remarks: "remarks",
-                occassion: "occassion",
+                occasion: "occasion",
                 reversalReceiverIdentifierType:
                     ReversalReceiverIdentifierType.tillNumber,
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("REVERSE TRANSACTION"),
           ),
@@ -176,7 +181,8 @@ class _HomeState extends State<Home> {
                     TaxRemittanceReceiverIdentifierType.msisdn,
                 taxRemittanceSenderIdentifierType:
                     TaxRemittanceSenderIdentifierType.tillNumber,
-              ).then((value) => print(value));
+                isLive: false,
+              ).then((value) => debugPrint(value.toString()));
             },
             child: const Text("REVERSE TRANSACTION"),
           ),
